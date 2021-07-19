@@ -1,0 +1,1196 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v5.json",
+  "width": 1500,
+  "height": 785,
+  "padding": {"left": 0, "top": 0, "right": 10, "bottom": 0},
+  "comment5": "# Separate signals to define the categories for each scale that is used. This way all the values are always shown, instead of just the ones that are used.",
+  "comment8": "# Signals used to calculate all the ranges for the Y - axes. Some are calculated in line. The graph_height is calculated based on the height given by the graph setup, padding is kept at 10.",
+  "comment9": "# index_x with mousemove event used to create the red rule on the mouse position (based on this example: https://vega.github.io/vega/examples/stock-index-chart/). Uses the rule mark and x scale to map the x pixel position in the scale in the map (not to be confused with the x-index in the data)",
+  "signals": [
+    {"name": "indicator_size", "value": 130},
+    {"name": "indicator_size_hover", "value": 300},
+    {"name": "graph_padding", "value": 10},
+    {"name": "amount_proximity_criticality", "value": 6},
+    {"name": "amount_human_role", "value": 5},
+    {"name": "amount_autonomy", "value": 3},
+    {"name": "point_color", "value": "black"},
+    {"name": "point_color_hover", "value": "black"},
+    {"name": "line_increase_color", "value": "blue"},
+    {"name": "line_decrease_color", "value": "blue"},
+    {"name": "line_stable_color", "value": "grey"},
+    {"name": "path_arrow_up", "value": "m10.95481,0.40633l8.6309,8.5682c0.54932,0.54503 0.55257,1.43197 0.00727,1.98075c-0.54481,0.54883 -1.4317,0.55208 -1.98048,0.00727l-7.63711,-7.58124l-7.5808,7.63711c-0.54503,0.54883 -1.43183,0.55208 -1.98066,0.00727c-0.54905,-0.54481 -0.5523,-1.4317 -0.00727,-1.98075l8.56776,-8.63135c0.27254,-0.27441 0.63017,-0.41228 0.98847,-0.41359l0.99192,0.40632zc-0.63344,-0.40764 -0.27455,-0.27214 -0.00013,0.00022"},
+    {"name": "path_arrow_down", "value": "m 0.4141214,2.4576494 c -0.54932,-0.54503 -0.55257,-1.43197 -0.0073,-1.98075 0.54481,-0.54883 1.4317,-0.55208 1.98048,-0.0073 l 7.6371096,7.58124 7.5808,-7.63711 c 0.54503,-0.54883 1.43183,-0.55208 1.98066,-0.0073 0.54905,0.54481 0.5523,1.4317 0.0073,1.98075 l -8.56776,8.6313496 c -0.27254,0.27441 -0.63017,0.41228 -0.98847,0.41359 l -0.9919196,-0.40632 c 0.63344,0.40763 0.27455,0.27213 1.3e-4,-2.3e-4 m -8.897253,-8.5679196 c -0.54932,-0.54503 -0.55257,-1.43197 -0.0073,-1.98075 0.54481,-0.54883 1.4317,-0.55208 1.98048,-0.0073 l 7.63711,7.58124 7.5807996,-7.63711 c 0.54503,-0.54883 1.43183,-0.55208 1.98066,-0.0073 0.54905,0.54481 0.5523,1.4317 0.0073,1.98075 l -8.56776,8.6313496 c -0.27254,0.27441 -0.63017,0.41228 -0.9884696,0.41359 l -0.99192,-0.40632 c 0.63344,0.40763 0.27455,0.27213 1.3e-4,-2.3e-4 m -8.63103,-8.5679196 c -0.54932,-0.54503 -0.55257,-1.43197 -0.0073,-1.98075 0.54481,-0.54883 1.4317,-0.55208 1.98048,-0.0073 l 7.63711,7.58124 7.5807996,-7.63711 c 0.54503,-0.54883 1.43183,-0.55208 1.98066,-0.0073 0.54905,0.54481 0.5523,1.4317 0.0073,1.98075 l -8.56776,8.6313496 c -0.27254,0.27441 -0.63017,0.41228 -0.9884696,0.41359 l -0.99192,-0.40632 c 0.63344,0.40763 0.27455,0.27213 1.3e-4,-2.3e-4 m -8.686493,-8.5679196 c -0.54932,-0.54503 -0.55257,-1.43197 -0.0073,-1.98075 0.54481,-0.54883 1.4317,-0.55208 1.98048,-0.0073 l 7.63711,7.58124 7.5807996,-7.63711 c 0.54503,-0.54883 1.43183,-0.55208 1.98066,-0.0073 0.54905,0.54481 0.5523,1.4317 0.0073,1.98075 l -8.56776,8.6313496 c -0.27254,0.27441 -0.63017,0.41228 -0.9884696,0.41359 l -0.99192,-0.40632 c 0.63344,0.40763 0.27455,0.27213 1.3e-4,-2.3e-4 m -8.63103,-8.5679196 c -0.54932,-0.54503 -0.55257,-1.43197 -0.0073,-1.98075 0.54481,-0.54883 1.4317,-0.55208 1.98048,-0.0073 l 7.63711,7.58124 7.5807996,-7.63711 c 0.54503,-0.54883 1.43183,-0.55208 1.98066,-0.0073 0.54905,0.54481 0.5523,1.4317 0.0073,1.98075 l -8.56776,8.6313496 c -0.27254,0.27441 -0.63017,0.41228 -0.9884696,0.41359 l -0.99192,-0.40632 c 0.63344,0.40763 0.27455,0.27213 1.3e-4,-2.3e-4 m -8.6532154,-8.5679196 c -0.54932,-0.54503 -0.55257,-1.43197 -0.0073,-1.98075 0.54481,-0.54883 1.4317,-0.55208 1.98048,-0.0073 l 7.63711,7.58124 7.5808,-7.63711 c 0.54503,-0.54883 1.43183,-0.55208 1.98066,-0.0073 0.54905,0.54481 0.5523,1.4317 0.0073,1.98075 l -8.56776,8.6313496 c -0.27254,0.27441 -0.63017,0.41228 -0.98847,0.41359 l -0.99192,-0.40632 c 0.63344,0.40763 0.27455,0.27213 1.3e-4,-2.3e-4 m -8.6643078,-8.5679196 c -0.54932,-0.54503 -0.55257,-1.43197 -0.0073,-1.98075 0.54481,-0.54883 1.4317,-0.55208 1.98048,-0.0073 l 7.63711,7.58124 7.5807998,-7.63711 c 0.54503,-0.54883 1.43183,-0.55208 1.98066,-0.0073 0.54905,0.54481 0.5523,1.4317 0.0073,1.98075 l -8.56776,8.6313496 c -0.27254,0.27441 -0.63017,0.41228 -0.9884698,0.41359 l -0.99192,-0.40632 c 0.63344,0.40763 0.27455,0.27213 1.3e-4,-2.3e-4 m -8.63103,-8.5679196 c -0.54932,-0.54503 -0.55257,-1.43197 -0.0073,-1.98075 0.54481,-0.54883 1.4317,-0.55208 1.98048,-0.0073 l 7.63711,7.58124 7.5807998,-7.63711 c 0.54503,-0.54883 1.43183,-0.55208 1.98066,-0.0073 0.54905,0.54481 0.5523,1.4317 0.0073,1.98075 l -8.56776,8.6313496 c -0.27254,0.27441 -0.63017,0.41228 -0.9884698,0.41359 l -0.99192,-0.40632 c 0.63344,0.40763 0.27455,0.27213 1.3e-4,-2.3e-4 m -8.63103,-8.5679196 c -0.54932,-0.54503 -0.55257,-1.43197 -0.0073,-1.98075 0.54481,-0.54883 1.4317,-0.55208 1.98048,-0.0073 l 7.63711,7.58124 7.5807998,-7.63711 c 0.54503,-0.54883 1.43183,-0.55208 1.98066,-0.0073 0.54905,0.54481 0.5523,1.4317 0.0073,1.98075 l -8.56776,8.6313496 c -0.27254,0.27441 -0.63017,0.41228 -0.9884698,0.41359 l -0.99192,-0.40632 c 0.63344,0.40763 0.27455,0.27213 1.3e-4,-2.3e-4 m -8.6754004,-8.5679196 c -0.54932,-0.54503 -0.55257,-1.43197 -0.0073,-1.98075 0.54481,-0.54883 1.4317,-0.55208 1.98048,-0.0073 l 7.63711,7.58124 7.5808002,-7.63711 c 0.54503,-0.54883 1.43183,-0.55208 1.98066,-0.0073 0.54905,0.54481 0.5523,1.4317 0.0073,1.98075 l -8.56776,8.6313496 c -0.27254,0.27441 -0.6301702,0.41228 -0.9884702,0.41359 l -0.99192,-0.40632 c 0.63344,0.40763 0.27455,0.27213 1.3e-4,-2.3e-4 m -8.719771,-8.5679196 c -0.54932,-0.54503 -0.55257,-1.43197 -0.0073,-1.98075 0.54481,-0.54883 1.4317,-0.55208 1.98048,-0.0073 l 7.63711,7.58124 7.5808002,-7.63711 c 0.54503,-0.54883 1.43183,-0.55208 1.98066,-0.0073 0.54905,0.54481 0.5523,1.4317 0.0073,1.98075 l -8.56776,8.6313496 c -0.27254,0.27441 -0.6301702,0.41228 -0.9884702,0.41359 l -0.99192,-0.40632 c 0.63344,0.40763 0.27455,0.27213 1.3e-4,-2.3e-4 m -8.63103,-8.5679196 c -0.54932,-0.54503 -0.55257,-1.43197 -0.0073,-1.98075 0.54481,-0.54883 1.4317,-0.55208 1.98048,-0.0073 l 7.63711,7.58124 7.5808002,-7.63711 c 0.54503,-0.54883 1.43183,-0.55208 1.98066,-0.0073 0.54905,0.54481 0.5523,1.4317 0.0073,1.98075 l -8.56776,8.6313496 c -0.27254,0.27441 -0.6301702,0.41228 -0.9884702,0.41359 l -0.99192,-0.40632 c 0.63344,0.40763 0.27455,0.27213 1.3e-4,-2.3e-4 m -8.63103,-8.5679196 c -0.54932,-0.54503 -0.55257,-1.43197 -0.0073,-1.98075 0.54481,-0.54883 1.4317,-0.55208 1.98048,-0.0073 l 7.63711,7.58124 7.5808002,-7.63711 c 0.54503,-0.54883 1.43183,-0.55208 1.98066,-0.0073 0.54905,0.54481 0.5523,1.4317 0.0073,1.98075 l -8.56776,8.6313496 c -0.27254,0.27441 -0.6301702,0.41228 -0.9884702,0.41359 l -0.99192,-0.40632 c 0.63344,0.40763 0.27455,0.27213 1.3e-4,-2.3e-4"},
+    {
+      "name": "categories_criticality",
+      "value": [
+        "Loss of life",
+        "Chance at critical injury",
+        "Chance at injury",
+        "Loss of comfort",
+        "Loss of essential money",
+        "Loss of discretionary money"
+      ]
+    },
+    {
+      "name": "categories_proximity",
+      "value": [
+        "Following",
+        "Touching",
+        "Approaching",
+        "Passing",
+        "Avoidance",
+        "None"
+      ]
+    },
+    {
+      "name": "categories_human_role",
+      "value": [
+        "Collaborator",
+        "Cooperator",
+        "Operator",
+        "Supervisor",
+        "Bystander"
+      ]
+    },
+    {"name": "autonomy_categories", "value": ["High", "Medium", "Low"]},
+    {
+      "name": "graph_height",
+      "update": "(height - 6 * graph_padding) / (amount_proximity_criticality * 2 + amount_human_role + 4 * amount_autonomy)"
+    },
+    {
+      "name": "max_proximity",
+      "update": "amount_proximity_criticality * graph_height"
+    },
+    {
+      "name": "max_human_role",
+      "update": "max_proximity + graph_padding + amount_human_role * graph_height"
+    },
+    {
+      "name": "max_criticality",
+      "update": "max_human_role + graph_padding + amount_proximity_criticality * graph_height"
+    },
+    {
+      "name": "height_autonomy_scale",
+      "update": "amount_autonomy * graph_height"
+    },
+    {
+      "name": "hover_point",
+      "description": "# Get the point (data entry) which the user is hovering, each value has a unique point name. Based on the country_timeline data and timeline signal in this example: https://vega.github.io/vega/examples/global-development/",
+      "value": {},
+      "on": [
+        {"events": "@point_proximity:mouseover,@point_humanrole:mouseover,@point_critical:mouseover,@point_info_acq:mouseover,@point_info_ana:mouseover,@point_act_sel:mouseover,@point_act_impl:mouseover,@action_scale_labels:mouseover", "update": "datum"},
+        {"events": "@point_proximity:mouseout,@point_humanrole:mouseout,@point_critical:mouseout,@point_info_acq:mouseout,@point_info_ana:mouseout,@point_act_sel:mouseout,@point_act_impl:mouseout,@action_scale_labels:mouseout", "update": "{}"}
+      ]
+    },
+    {
+      "name": "hover_label",
+      "description": "# Get the value from the hover on the action label (which is the x-value in the data)",
+      "value": {},
+      "on": [
+        {"events": "@action_scale_labels:mouseover", "update": "datum.value"},
+        {"events": "@action_scale_labels:mouseout", "update": "{}"}
+      ]
+    }
+    
+  ],
+  "comment": "# Using dsv for the data format instead of csv to define the delimiter",
+  "comment7": "# Two transforms applied to the table to get just the activities and a identifier. This can then be used to create the activity rect to alternate the background color to help differentiating between activities.",
+  "comment10": "# hovered_data_entry filters on the hover event of the point marks in the graph or the label of the actions.",
+  "data": [
+    {
+      "name": "table",
+      "format": {"type": "dsv", "delimiter": ";", "parse": "auto"},
+      "url": "data/default_data.csv"
+    },
+    {
+      "name": "activity_grouped",
+      "source": "table",
+      "transform": [
+        {
+          "type": "aggregate",
+          "groupby": ["Activity"],
+          "ops": ["count", "min", "max"],
+          "fields": ["x", "x", "x"],
+          "as": ["amount_actions", "x_min", "x_max"]
+        },
+        {
+        "type": "identifier",
+        "as": "id"
+        }
+      ]
+    },
+    {
+      "name": "hovered_data_entry",
+      "source": "table",
+      "transform": [
+        {"type": "filter", "expr": "hover_point && datum.x == hover_point.x || hover_label && datum.x == hover_label"},
+        {"type": "collect", "sort": {"field": "year"}}
+      ]
+    },
+    {
+      "name": "indicator_table"
+    },
+    {
+      "name": "indicator_table_criticality",
+      "source" : "indicator_table",
+      "transform": [
+        {"type": "filter", "expr": "datum.indicator_field === 'Criticality'"}
+      ]
+    },
+    {
+      "name": "indicator_table_human_role",
+      "source" : "indicator_table",
+      "transform": [
+        {"type": "filter", "expr": "datum.indicator_field === 'Human Role'"}
+      ]
+    },
+    {
+      "name": "indicator_table_proximity",
+      "source" : "indicator_table",
+      "transform": [
+        {"type": "filter", "expr": "datum.indicator_field === 'Proximity'"}
+      ]
+    },
+    {
+      "name": "indicator_table_info_acq",
+      "source" : "indicator_table",
+      "transform": [
+        {"type": "filter", "expr": "datum.indicator_field === 'Information Acquisition'"}
+      ]
+    },
+    {
+      "name": "indicator_table_info_analysis",
+      "source" : "indicator_table",
+      "transform": [
+        {"type": "filter", "expr": "datum.indicator_field === 'Information Analysis'"}
+      ]
+    },
+    {
+      "name": "indicator_table_action_selection",
+      "source" : "indicator_table",
+      "transform": [
+        {"type": "filter", "expr": "datum.indicator_field === 'Action Selection'"}
+      ]
+    },
+    {
+      "name": "indicator_table_action_impl",
+      "source" : "indicator_table",
+      "transform": [
+        {"type": "filter", "expr": "datum.indicator_field === 'Action Implementation'"}
+      ]
+    }
+  ],
+  "comment1": "# yscale uses the categories signal to create a mark for each data point, even when there is no entry in the data. Band is used since ordinal gives only 2 ticks (not sure why)",
+  "comment6": "# Manually set the ranges for each separate plot to position them under each other. TODO: look into using signals to calculate this value based on the height variable. (25 per row used, 10 padding in between value graphs)",
+  "scales": [
+    {
+      "name": "xscale_action",
+      "type": "point",
+      "domain": {"data": "table", "field": "x"},
+      "range": "width"
+    },
+    {
+      "name": "xscale_activity_grouped",
+      "type": "band",
+      "domain": {"data": "activity_grouped", "field": "Activity"},
+      "range": "width"
+    },
+    {
+      "name": "yscale_proximity",
+      "type": "band",
+      "domain": {"signal": "categories_proximity"},
+      "range": [0, {"signal": "max_proximity"}]
+    },
+    {
+      "name": "yscale_human_role",
+      "type": "band",
+      "domain": {"signal": "categories_human_role"},
+      "range": [{"signal": "max_proximity + graph_padding"}, {"signal": "max_human_role"}]
+    },
+    {
+      "name": "yscale_criticality",
+      "type": "band",
+      "domain": {"signal": "categories_criticality"},
+      "range": [{"signal": "max_human_role + graph_padding"}, {"signal": "max_criticality"}]
+    },
+    {
+      "name": "info_acq_scale",
+      "type": "band",
+      "domain": {"signal": "autonomy_categories"},
+      "range": [{"signal": "max_criticality + graph_padding"}, {"signal": "max_criticality + graph_padding + height_autonomy_scale"}]
+    },
+    {
+      "name": "info_analysis_scale",
+      "type": "band",
+      "domain": {"signal": "autonomy_categories"},
+      "range": [{"signal": "max_criticality + 2 * graph_padding + height_autonomy_scale"}, {"signal": "max_criticality + 2 * graph_padding + 2 * height_autonomy_scale"}]
+    },
+    {
+      "name": "action_selection_scale",
+      "type": "band",
+      "domain": {"signal": "autonomy_categories"},
+      "range": [{"signal": "max_criticality + 3 * graph_padding + 2 * height_autonomy_scale"}, {"signal": "max_criticality + 3 * graph_padding + 3 * height_autonomy_scale"}]
+    },
+    {
+      "name": "action_impl_scale",
+      "type": "band",
+      "domain": {"signal": "autonomy_categories"},
+      "range": [{"signal": "max_criticality + 4 * graph_padding + 3 * height_autonomy_scale"}, {"signal": "max_criticality + 4 * graph_padding + 4 * height_autonomy_scale"}]
+    },
+    {
+      "name": "x",
+      "type": "linear",
+      "domain": [0, {"signal": "width"}],
+      "range": "width"
+    }
+  ],
+  "comment2": "# Custom scale for the x-axis. The text is updated based on the index of that data entry to get the action string. The rest is positioning code and to remove the domain line.",
+  "comment3": "# Custom scale for each y-axis (representing one value of the framework). bandPosition:0 and labelOffset -20 to match the line with the values, not sure why.",
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale_action",
+      "title": "Actions",
+      "labelOffset": 10,
+      "titleFontSize": 20,
+      "offset": 100,
+      "domain": false,
+      "encode": {
+        "labels": {
+          "name": "action_scale_labels",
+          "interactive": true,
+          "update": {
+            "text": {"signal": "data('table')[datum.value].Action"},
+            "angle": {"value": 90},
+            "fontSize": {"value": 20},
+            "fill": {"value": "black"},
+            "tooltip": {"signal": "data('table')[datum.value].Action"}
+          },
+          "hover": {
+            "fill": {"value": "firebrick"},
+            "fontSize": {"value": 25}
+          }          
+        }
+      }
+    },
+    {
+      "orient": "top",
+      "scale": "xscale_activity_grouped",
+      "title": "Tasks",
+      "labelOffset": 10,
+      "titleFontSize": 20,
+      "offset": 0,
+      "domain": false,
+      "encode": {
+        "labels": {
+          "update": {
+            "fontSize": {"value": 20},
+            "text": {"signal": "datum.value"}
+          }
+        }
+      }
+    },
+    {
+      "orient": "left",
+      "scale": "yscale_proximity",
+      "title": "Proximity",
+      "titleAngle": 0,
+      "titleAlign": "right",
+      "titleFontSize": 20,
+      "grid": true,
+      "domain": false,
+      "offset": 25,
+      "bandPosition": 0,
+      "labelOffset": -10,
+      "encode": {"labels": {"update": {"fontSize": {"value": 15}}}}
+    },
+    {
+      "orient": "left",
+      "scale": "yscale_human_role",
+      "title": "Human Role",
+      "titleAngle": 0,
+      "titleAlign": "right",
+      "titleFontSize": 20,
+      "grid": true,
+      "domain": false,
+      "tickCount": 5,
+      "offset": 25,
+      "bandPosition": 0,
+      "labelOffset": -10,
+      "encode": {"labels": {"update": {"fontSize": {"value": 15}}}}
+    },
+    {
+      "orient": "left",
+      "scale": "yscale_criticality",
+      "title": "Criticality",
+      "titleAngle": 0,
+      "titleAlign": "right",
+      "titleFontSize": 20,
+      "grid": true,
+      "domain": false,
+      "tickCount": 5,
+      "offset": 25,
+      "bandPosition": 0,
+      "labelOffset": -10,
+      "encode": {"labels": {"update": {"fontSize": {"value": 15}}}}
+    },
+    {
+      "orient": "left",
+      "scale": "info_acq_scale",
+      "title": "Information Acquisition",
+      "grid": true,
+      "domain": false,
+      "titleAngle": 0,
+      "titleAlign": "right",
+      "titleFontSize": 20,
+      "tickCount": 5,
+      "offset": 25,
+      "bandPosition": 0,
+      "labelOffset": -10,
+      "encode": {"labels": {"update": {"fontSize": {"value": 15}}}}
+    },
+    {
+      "orient": "left",
+      "scale": "info_analysis_scale",
+      "title": "Information Analysis",
+      "grid": true,
+      "domain": false,
+      "titleAngle": 0,
+      "titleAlign": "right",
+      "titleFontSize": 20,
+      "tickCount": 5,
+      "offset": 25,
+      "bandPosition": 0,
+      "labelOffset": -10,
+      "encode": {"labels": {"update": {"fontSize": {"value": 15}}}}
+    },
+    {
+      "orient": "left",
+      "scale": "action_selection_scale",
+      "title": "Action Selection",
+      "grid": true,
+      "domain": false,
+      "titleAngle": 0,
+      "titleAlign": "right",
+      "titleFontSize": 20,
+      "tickCount": 5,
+      "offset": 25,
+      "bandPosition": 0,
+      "labelOffset": -10,
+      "encode": {"labels": {"update": {"fontSize": {"value": 15}}}}
+    },
+    {
+      "orient": "left",
+      "scale": "action_impl_scale",
+      "title": "Action Implementation",
+      "grid": true,
+      "domain": false,
+      "titleAngle": 0,
+      "titleAlign": "right",
+      "titleFontSize": 20,
+      "tickCount": 5,
+      "offset": 25,
+      "bandPosition": 0,
+      "labelOffset": -10,
+      "encode": {"labels": {"update": {"fontSize": {"value": 15}}}}
+    }
+  ],
+  "comment4": "# Creating the line and dots in the graph. For each graph it is done twice.",
+  "marks": [
+    {
+      "type": "rect",
+      "from": {"data": "activity_grouped"},
+      "encode": {
+        "enter": {
+          "x": {"scale": "xscale_action", "field": "x_min"},
+          "x2": {"scale": "xscale_action", "field": "x_max"},
+          "y": {"value": 0},
+          "y2": {"signal": "height"},
+          "tooltip": {"signal": "'Task: ' + datum.Activity"}
+        },
+        "update": {
+          "fill": {"signal": "datum.id % 2 == 0 ? 'grey' : 'lightgrey'"},
+          "opacity": {"value": 0.5}
+        }
+      }
+    },
+    {
+      "type": "line",
+      "from": {"data": "table"},
+      "encode": {
+        "enter": {
+          "x": {"scale": "xscale_action", "field": "x"},
+          "y": {"scale": "yscale_criticality", "field": "Criticality"},
+          "stroke": {"signal": "line_stable_color"},
+          "strokeWidth": {"value": 2}
+        }
+      }
+    },
+    {
+      "name": "point_critical", 
+      "type": "symbol",
+      "from": {"data": "table"},
+      "encode": {
+        "enter": {
+          "x": {"scale": "xscale_action", "field": "x"},
+          "y": {"scale": "yscale_criticality", "field": "Criticality"},
+          "tooltip": {"signal": "'Action: ' + datum.Action"}
+        },
+        "update": {
+          "fill": {"signal": "point_color"}, 
+          "size": {"signal": "indicator_size"}
+        },
+        "hover": {
+          "fill": {"signal": "point_color_hover"},
+          "size": {"signal": "indicator_size_hover"}
+        }
+      }
+    },
+    {
+      "type": "line",
+      "from": {"data": "table"},
+      "encode": {
+        "enter": {
+          "x": {"scale": "xscale_action", "field": "x"},
+          "y": {"scale": "yscale_human_role", "field": "Human Role"},
+          "stroke": {"signal": "line_stable_color"},
+          "strokeWidth": {"value": 2}
+        }
+      }
+    },
+    {
+      "name": "point_humanrole", 
+      "type": "symbol",
+      "from": {"data": "table"},
+      "encode": {
+        "enter": {
+          "x": {"scale": "xscale_action", "field": "x"},
+          "y": {"scale": "yscale_human_role", "field": "Human Role"},
+          "tooltip": {"signal": "'Action: ' + datum.Action"}
+        },
+        "update": {
+          "fill": {"signal": "point_color"}, 
+          "size": {"signal": "indicator_size"}
+        },
+        "hover": {
+          "fill": {"signal": "point_color_hover"},
+          "size": {"signal": "indicator_size_hover"}
+        }
+      }
+    },
+    {
+      "type": "line",
+      "from": {"data": "table"},
+      "encode": {
+        "enter": {
+          "x": {"scale": "xscale_action", "field": "x"},
+          "y": {"scale": "yscale_proximity", "field": "Proximity"},
+          "stroke": {"signal": "line_stable_color"},
+          "strokeWidth": {"value": 2}
+        }
+      }
+    },
+    {
+      "name": "point_proximity",
+      "type": "symbol",
+      "from": {"data": "table"},
+      "encode": {
+        "enter": {
+          "x": {"scale": "xscale_action", "field": "x"},
+          "y": {"scale": "yscale_proximity", "field": "Proximity"},
+          "tooltip": {"signal": "'Action: ' + datum.Action"}
+        },
+        "update": {
+          "fill": {"signal": "point_color"}, 
+          "size": {"signal": "indicator_size"}
+        },
+        "hover": {
+          "fill": {"signal": "point_color_hover"},
+          "size": {"signal": "indicator_size_hover"}
+        }
+      }
+    },
+    {
+      "type": "line",
+      "from": {"data": "table"},
+      "encode": {
+        "enter": {
+          "x": {"scale": "xscale_action", "field": "x"},
+          "y": {"scale": "info_acq_scale", "field": "Information Acquisition"},
+          "stroke": {"signal": "line_stable_color"},
+          "strokeWidth": {"value": 2}
+        }
+      }
+    },
+    {
+      "name": "point_info_acq",
+      "type": "symbol",
+      "from": {"data": "table"},
+      "encode": {
+        "enter": {
+          "x": {"scale": "xscale_action", "field": "x"},
+          "y": {"scale": "info_acq_scale", "field": "Information Acquisition"},
+          "tooltip": {"signal": "'Action: ' + datum.Action"}
+        },
+        "update": {
+          "fill": {"signal": "point_color"}, 
+          "size": {"signal": "indicator_size"}
+        },
+        "hover": {
+          "fill": {"signal": "point_color_hover"},
+          "size": {"signal": "indicator_size_hover"}
+        }
+      }
+    },
+    {
+      "type": "line",
+      "from": {"data": "table"},
+      "encode": {
+        "enter": {
+          "x": {"scale": "xscale_action", "field": "x"},
+          "y": {"scale": "info_analysis_scale", "field": "Information Analysis"},
+          "stroke": {"signal": "line_stable_color"},
+          "strokeWidth": {"value": 2}
+        }
+      }
+    },
+    {
+      "name": "point_info_ana",
+      "type": "symbol",
+      "from": {"data": "table"},
+      "encode": {
+        "enter": {
+          "x": {"scale": "xscale_action", "field": "x"},
+          "y": {"scale": "info_analysis_scale","field": "Information Analysis"},
+          "tooltip": {"signal": "'Action: ' + datum.Action"}
+        },
+        "update": {
+          "fill": {"signal": "point_color"}, 
+          "size": {"signal": "indicator_size"}
+        },
+        "hover": {
+          "fill": {"signal": "point_color_hover"},
+          "size": {"signal": "indicator_size_hover"}
+        }
+      }
+    },
+    {
+      "type": "line",
+      "from": {"data": "table"},
+      "encode": {
+        "enter": {
+          "x": {"scale": "xscale_action", "field": "x"},
+          "y": {"scale": "action_selection_scale", "field": "Action Selection"},
+          "stroke": {"signal": "line_stable_color"},
+          "strokeWidth": {"value": 2}
+        }
+      }
+    },
+    {
+      "name": "point_act_sel",
+      "type": "symbol",
+      "from": {"data": "table"},
+      "encode": {
+        "enter": {
+          "x": {"scale": "xscale_action", "field": "x"},
+          "y": {"scale": "action_selection_scale", "field": "Action Selection"},
+          "tooltip": {"signal": "'Action: ' + datum.Action"}
+        },
+        "update": {
+          "fill": {"signal": "point_color"}, 
+          "size": {"signal": "indicator_size"}
+        },
+        "hover": {
+          "fill": {"signal": "point_color_hover"},
+          "size": {"signal": "indicator_size_hover"}
+        }
+      }
+    },
+    {
+      "type": "line",
+      "from": {"data": "table"},
+      "encode": {
+        "enter": {
+          "x": {"scale": "xscale_action", "field": "x"},
+          "y": {"scale": "action_impl_scale", "field": "Action Implementation"},
+          "stroke": {"signal": "line_stable_color"},
+          "strokeWidth": {"value": 2}
+        }
+      }
+    },
+    {
+      "name": "point_act_impl",
+      "type": "symbol",
+      "from": {"data": "table"},
+      "encode": {
+        "enter": {
+          "x": {"scale": "xscale_action", "field": "x"},
+          "y": {"scale": "action_impl_scale", "field": "Action Implementation"},
+          "tooltip": {"signal": "'Action: ' + datum.Action"}
+        },
+        "update": {
+          "fill": {"signal": "point_color"}, 
+          "size": {"signal": "indicator_size"}
+        },
+        "hover": {
+          "fill": {"signal": "point_color_hover"},
+          "size": {"signal": "indicator_size_hover"}
+        }
+      }
+    },
+    {
+      "type": "rule",
+      "from": {"data": "hovered_data_entry"},
+      "description": "# Create a horizontal rule to allow easier reading of the vertical data between actions.",
+      "encode": {
+        "update": {
+          "x": {"scale": "xscale_action", "field": "x"},
+          "y": {"value": 0},
+          "y2": {"field": {"group": "height"}},
+          "stroke": {"value": "firebrick"},
+          "strokeWidth": {"value": 2}
+        }
+      }
+    },
+    {
+      "type": "symbol",
+      "description": "# Create a new point based on the hovered data entry, so that the selected action is highlighted in each row of the visualization.",
+      "from": {"data": "hovered_data_entry"},
+      "encode": {
+        "enter": {
+          "x": {"scale": "xscale_action", "field": "x"},
+          "y": {"scale": "yscale_human_role", "field": "Human Role"}
+        },
+        "update": {
+          "fill": {"signal": "point_color_hover"},
+          "size": {"signal": "indicator_size_hover"}
+        },
+        "hover": {
+          "tooltip": {"signal": "'Action: ' + datum.Action"}
+        }
+      }
+    },
+    {
+      "type": "symbol",
+      "description": "# Create a new point based on the hovered data entry, so that the selected action is highlighted in each row of the visualization.",
+      "from": {"data": "hovered_data_entry"},
+      "encode": {
+        "enter": {
+          "x": {"scale": "xscale_action", "field": "x"},
+          "y": {"scale": "yscale_proximity", "field": "Proximity"}
+        },
+        "update": {
+          "fill": {"signal": "point_color_hover"},
+          "size": {"signal": "indicator_size_hover"}
+        },
+        "hover": {
+          "tooltip": {"signal": "'Action: ' + datum.Action"}
+        }
+      }
+    },
+    {
+      "type": "symbol",
+      "description": "# Create a new point based on the hovered data entry, so that the selected action is highlighted in each row of the visualization.",
+      "from": {"data": "hovered_data_entry"},
+      "encode": {
+        "enter": {
+          "x": {"scale": "xscale_action", "field": "x"},
+          "y": {"scale": "yscale_criticality", "field": "Criticality"}
+        },
+        "update": {
+          "fill": {"signal": "point_color_hover"},
+          "size": {"signal": "indicator_size_hover"}
+        },
+        "hover": {
+          "tooltip": {"signal": "'Action: ' + datum.Action"}
+        }
+      }
+    },
+    {
+      "type": "symbol",
+      "description": "# Create a new point based on the hovered data entry, so that the selected action is highlighted in each row of the visualization.",
+      "from": {"data": "hovered_data_entry"},
+      "encode": {
+        "enter": {
+          "x": {"scale": "xscale_action", "field": "x"},
+          "y": {"scale": "info_acq_scale", "field": "Information Acquisition"}
+        },
+        "update": {
+          "fill": {"signal": "point_color_hover"},
+          "size": {"signal": "indicator_size_hover"}
+        },
+        "hover": {
+          "tooltip": {"signal": "'Action: ' + datum.Action"}
+        }
+      }
+    },
+    {
+      "type": "symbol",
+      "description": "# Create a new point based on the hovered data entry, so that the selected action is highlighted in each row of the visualization.",
+      "from": {"data": "hovered_data_entry"},
+      "encode": {
+        "enter": {
+          "x": {"scale": "xscale_action", "field": "x"},
+          "y": {"scale": "info_analysis_scale", "field": "Information Analysis"}
+        },
+        "update": {
+          "fill": {"signal": "point_color_hover"},
+          "size": {"signal": "indicator_size_hover"}
+        },
+        "hover": {
+          "tooltip": {"signal": "'Action: ' + datum.Action"}
+        }
+      }
+    },
+    {
+      "type": "symbol",
+      "description": "# Create a new point based on the hovered data entry, so that the selected action is highlighted in each row of the visualization.",
+      "from": {"data": "hovered_data_entry"},
+      "encode": {
+        "enter": {
+          "x": {"scale": "xscale_action", "field": "x"},
+          "y": {"scale": "action_selection_scale", "field": "Action Selection"}
+        },
+        "update": {
+          "fill": {"signal": "point_color_hover"},
+          "size": {"signal": "indicator_size_hover"}
+        },
+        "hover": {
+          "tooltip": {"signal": "'Action: ' + datum.Action"}
+        }
+      }
+    },
+    {
+      "type": "symbol",
+      "description": "# Create a new point based on the hovered data entry, so that the selected action is highlighted in each row of the visualization.",
+      "from": {"data": "hovered_data_entry"},
+      "encode": {
+        "enter": {
+          "x": {"scale": "xscale_action", "field": "x"},
+          "y": {"scale": "action_impl_scale", "field": "Action Implementation"}
+        },
+        "update": {
+          "fill": {"signal": "point_color_hover"},
+          "size": {"signal": "indicator_size_hover"}
+        },
+        "hover": {
+          "tooltip": {"signal": "'Action: ' + datum.Action"}
+        }
+      }
+    },
+    {
+      "type": "line",
+      "description": "# Create separate line with a different color to indicate the increasing of the value.",
+      "from": {"data": "table"},
+      "encode": {
+        "enter": {
+          "x": {"scale": "xscale_action", "field": "x"},
+          "y": {"scale": "yscale_criticality", "field": "Criticality"},
+          "stroke": {"signal": "line_increase_color"},
+          "strokeWidth": {"value": 2},
+          "defined": {"signal": "false || indexof(datum['Criticality_Change'], 'i') != -1"}
+        }
+      }
+    },
+    {
+      "type": "line",
+      "description": "# Create separate line with a different color to indicate the decreasing of the value.",
+      "from": {"data": "table"},
+      "encode": {
+        "enter": {
+          "x": {"scale": "xscale_action", "field": "x"},
+          "y": {"scale": "yscale_criticality", "field": "Criticality"},
+          "stroke": {"signal": "line_decrease_color"},
+          "strokeWidth": {"value": 2},
+          "defined": {"signal": "false || indexof(datum['Criticality_Change'], 'd') != -1"}
+        }
+      }
+    },
+    {
+      "type": "line",
+      "description": "# Create separate line with the increase color for the special edge case that occurs.",
+      "from": {"data": "table"},
+      "encode": {
+        "enter": {
+          "x": {"scale": "xscale_action", "field": "x"},
+          "y": {"scale": "yscale_criticality", "field": "Criticality"},
+          "stroke": {"signal": "line_increase_color"},
+          "strokeWidth": {"value": 2},
+          "defined": {"signal": "false || indexof(datum['Criticality_Change'], 's') != -1"}
+        }
+      }
+    },
+    {
+      "type": "line",
+      "description": "# Create separate line with a different color to indicate the increasing of the value.",
+      "from": {"data": "table"},
+      "encode": {
+        "enter": {
+          "x": {"scale": "xscale_action", "field": "x"},
+          "y": {"scale": "yscale_proximity", "field": "Proximity"},
+          "stroke": {"signal": "line_increase_color"},
+          "strokeWidth": {"value": 2},
+          "defined": {"signal": "false || indexof(datum['Proximity_Change'], 'i') != -1"}
+        }
+      }
+    },
+    {
+      "type": "line",
+      "description": "# Create separate line with a different color to indicate the decreasing of the value.",
+      "from": {"data": "table"},
+      "encode": {
+        "enter": {
+          "x": {"scale": "xscale_action", "field": "x"},
+          "y": {"scale": "yscale_proximity", "field": "Proximity"},
+          "stroke": {"signal": "line_decrease_color"},
+          "strokeWidth": {"value": 2},
+          "defined": {"signal": "false || indexof(datum['Proximity_Change'], 'd') != -1"}
+        }
+      }
+    },
+    {
+      "type": "line",
+      "description": "# Create separate line with the increase color for the special edge case that occurs.",
+      "from": {"data": "table"},
+      "encode": {
+        "enter": {
+          "x": {"scale": "xscale_action", "field": "x"},
+          "y": {"scale": "yscale_proximity", "field": "Proximity"},
+          "stroke": {"signal": "line_increase_color"},
+          "strokeWidth": {"value": 2},
+          "defined": {"signal": "false || indexof(datum['Proximity_Change'], 's') != -1"}
+        }
+      }
+    },
+    {
+      "type": "line",
+      "description": "# Create separate line with a different color to indicate the increasing of the value.",
+      "from": {"data": "table"},
+      "encode": {
+        "enter": {
+          "x": {"scale": "xscale_action", "field": "x"},
+          "y": {"scale": "yscale_human_role", "field": "Human Role"},
+          "stroke": {"signal": "line_increase_color"},
+          "strokeWidth": {"value": 2},
+          "defined": {"signal": "false || indexof(datum['Human Role_Change'], 'i') != -1"}
+        }
+      }
+    },
+    {
+      "type": "line",
+      "description": "# Create separate line with a different color to indicate the decreasing of the value.",
+      "from": {"data": "table"},
+      "encode": {
+        "enter": {
+          "x": {"scale": "xscale_action", "field": "x"},
+          "y": {"scale": "yscale_human_role", "field": "Human Role"},
+          "stroke": {"signal": "line_decrease_color"},
+          "strokeWidth": {"value": 2},
+          "defined": {"signal": "false || indexof(datum['Human Role_Change'], 'd') != -1"}
+        }
+      }
+    },
+    {
+      "type": "line",
+      "description": "# Create separate line with the increase color for the special edge case that occurs.",
+      "from": {"data": "table"},
+      "encode": {
+        "enter": {
+          "x": {"scale": "xscale_action", "field": "x"},
+          "y": {"scale": "yscale_human_role", "field": "Human Role"},
+          "stroke": {"signal": "line_increase_color"},
+          "strokeWidth": {"value": 2},
+          "defined": {"signal": "false || indexof(datum['Human Role_Change'], 's') != -1"}
+        }
+      }
+    },
+    {
+      "type": "line",
+      "description": "# Create separate line with a different color to indicate the increasing of the value.",
+      "from": {"data": "table"},
+      "encode": {
+        "enter": {
+          "x": {"scale": "xscale_action", "field": "x"},
+          "y": {"scale": "info_acq_scale", "field": "Information Acquisition"},
+          "stroke": {"signal": "line_increase_color"},
+          "strokeWidth": {"value": 2},
+          "defined": {"signal": "false || indexof(datum['Information Acquisition_Change'], 'i') != -1"}
+        }
+      }
+    },
+    {
+      "type": "line",
+      "description": "# Create separate line with a different color to indicate the decreasing of the value.",
+      "from": {"data": "table"},
+      "encode": {
+        "enter": {
+          "x": {"scale": "xscale_action", "field": "x"},
+          "y": {"scale": "info_acq_scale", "field": "Information Acquisition"},
+          "stroke": {"signal": "line_decrease_color"},
+          "strokeWidth": {"value": 2},
+          "defined": {"signal": "false || indexof(datum['Information Acquisition_Change'], 'd') != -1"}
+        }
+      }
+    },
+    {
+      "type": "line",
+      "description": "# Create separate line with the increase color for the special edge case that occurs.",
+      "from": {"data": "table"},
+      "encode": {
+        "enter": {
+          "x": {"scale": "xscale_action", "field": "x"},
+          "y": {"scale": "info_acq_scale", "field": "Information Acquisition"},
+          "stroke": {"signal": "line_increase_color"},
+          "strokeWidth": {"value": 2},
+          "defined": {"signal": "false || indexof(datum['Information Acquisition_Change'], 's') != -1"}
+        }
+      }
+    },
+    {
+      "type": "line",
+      "description": "# Create separate line with a different color to indicate the increasing of the value.",
+      "from": {"data": "table"},
+      "encode": {
+        "enter": {
+          "x": {"scale": "xscale_action", "field": "x"},
+          "y": {"scale": "info_analysis_scale", "field": "Information Analysis"},
+          "stroke": {"signal": "line_increase_color"},
+          "strokeWidth": {"value": 2},
+          "defined": {"signal": "false || indexof(datum['Information Analysis_Change'], 'i') != -1"}
+        }
+      }
+    },
+    {
+      "type": "line",
+      "description": "# Create separate line with a different color to indicate the decreasing of the value.",
+      "from": {"data": "table"},
+      "encode": {
+        "enter": {
+          "x": {"scale": "xscale_action", "field": "x"},
+          "y": {"scale": "info_analysis_scale", "field": "Information Analysis"},
+          "stroke": {"signal": "line_decrease_color"},
+          "strokeWidth": {"value": 2},
+          "defined": {"signal": "false || indexof(datum['Information Analysis_Change'], 'd') != -1"}
+        }
+      }
+    },
+    {
+      "type": "line",
+      "description": "# Create separate line with the increase color for the special edge case that occurs.",
+      "from": {"data": "table"},
+      "encode": {
+        "enter": {
+          "x": {"scale": "xscale_action", "field": "x"},
+          "y": {"scale": "info_analysis_scale", "field": "Information Analysis"},
+          "stroke": {"signal": "line_increase_color"},
+          "strokeWidth": {"value": 2},
+          "defined": {"signal": "false || indexof(datum['Information Analysis_Change'], 's') != -1"}
+        }
+      }
+    },
+    {
+      "type": "line",
+      "description": "# Create separate line with a different color to indicate the increasing of the value.",
+      "from": {"data": "table"},
+      "encode": {
+        "enter": {
+          "x": {"scale": "xscale_action", "field": "x"},
+          "y": {"scale": "action_selection_scale", "field": "Action Selection"},
+          "stroke": {"signal": "line_increase_color"},
+          "strokeWidth": {"value": 2},
+          "defined": {"signal": "false || indexof(datum['Action Selection_Change'], 'i') != -1"}
+        }
+      }
+    },
+    {
+      "type": "line",
+      "description": "# Create separate line with a different color to indicate the decreasing of the value.",
+      "from": {"data": "table"},
+      "encode": {
+        "enter": {
+          "x": {"scale": "xscale_action", "field": "x"},
+          "y": {"scale": "action_selection_scale", "field": "Action Selection"},
+          "stroke": {"signal": "line_decrease_color"},
+          "strokeWidth": {"value": 2},
+          "defined": {"signal": "false || indexof(datum['Action Selection_Change'], 'd') != -1"}
+        }
+      }
+    },
+    {
+      "type": "line",
+      "description": "# Create separate line with the increase color for the special edge case that occurs.",
+      "from": {"data": "table"},
+      "encode": {
+        "enter": {
+          "x": {"scale": "xscale_action", "field": "x"},
+          "y": {"scale": "action_selection_scale", "field": "Action Selection"},
+          "stroke": {"signal": "line_increase_color"},
+          "strokeWidth": {"value": 2},
+          "defined": {"signal": "false || indexof(datum['Action Selection_Change'], 's') != -1"}
+        }
+      }
+    },
+    {
+      "type": "line",
+      "description": "# Create separate line with a different color to indicate the increasing of the value.",
+      "from": {"data": "table"},
+      "encode": {
+        "enter": {
+          "x": {"scale": "xscale_action", "field": "x"},
+          "y": {"scale": "action_impl_scale", "field": "Action Implementation"},
+          "stroke": {"signal": "line_increase_color"},
+          "strokeWidth": {"value": 2},
+          "defined": {"signal": "false || indexof(datum['Action Implementation_Change'], 'i') != -1"}
+        }
+      }
+    },
+    {
+      "type": "line",
+      "description": "# Create separate line with a different color to indicate the decreasing of the value.",
+      "from": {"data": "table"},
+      "encode": {
+        "enter": {
+          "x": {"scale": "xscale_action", "field": "x"},
+          "y": {"scale": "action_impl_scale", "field": "Action Implementation"},
+          "stroke": {"signal": "line_decrease_color"},
+          "strokeWidth": {"value": 2},
+          "defined": {"signal": "false || indexof(datum['Action Implementation_Change'], 'd') != -1"}
+        }
+      }
+    },
+    {
+      "type": "line",
+      "description": "# Create separate line with the increase color for the special edge case that occurs.",
+      "from": {"data": "table"},
+      "encode": {
+        "enter": {
+          "x": {"scale": "xscale_action", "field": "x"},
+          "y": {"scale": "action_impl_scale", "field": "Action Implementation"},
+          "stroke": {"signal": "line_increase_color"},
+          "strokeWidth": {"value": 2},
+          "defined": {"signal": "false || indexof(datum['Action Implementation_Change'], 's') != -1"}
+        }
+      }
+    },
+    {
+      "type": "path",
+      "from": {"data": "indicator_table_criticality"},
+      "encode": {
+        "enter": {
+          "path": {"signal": "(datum.indicator_isIncrease)? path_arrow_up : path_arrow_down"},
+          "x": {"scale": "xscale_action", "field": "x"},
+          "y": {"scale": "yscale_criticality", "field": "Criticality"},
+          "width": {"value": 20},
+          "height": {"value": 20},
+          "fill": {"value": "orange"},
+          "tooltip": {"signal": "datum.indicator_description"},
+          "scaleX": {"signal": "(datum.indicator_type === 'Hard') ? 1.3 : (datum.indicator_type === 'Medium') ? 1.15 : 1"},
+          "scaleY": {"signal": "(datum.indicator_type === 'Hard') ? 1.3 : (datum.indicator_type === 'Medium') ? 1.15 : 1"}
+        }
+      }
+    },
+    {
+      "type": "path",
+      "from": {"data": "indicator_table_human_role"},
+      "encode": {
+        "enter": {
+          "path": {"signal": "(datum.indicator_isIncrease)? path_arrow_up : path_arrow_down"},
+          "x": {"scale": "xscale_action", "field": "x"},
+          "y": {"scale": "yscale_human_role", "field": "Human Role"},
+          "width": {"value": 20},
+          "height": {"value": 20},
+          "fill": {"value": "orange"},
+          "tooltip": {"signal": "datum.indicator_description"},
+          "scaleX": {"signal": "(datum.indicator_type === 'Hard') ? 1.3 : (datum.indicator_type === 'Medium') ? 1.15 : 1"},
+          "scaleY": {"signal": "(datum.indicator_type === 'Hard') ? 1.3 : (datum.indicator_type === 'Medium') ? 1.15 : 1"}
+        }
+      }
+    },
+    {
+      "type": "path",
+      "from": {"data": "indicator_table_proximity"},
+      "encode": {
+        "enter": {
+          "path": {"signal": "(datum.indicator_isIncrease)? path_arrow_up : path_arrow_down"},
+          "x": {"scale": "xscale_action", "field": "x"},
+          "y": {"scale": "yscale_proximity", "field": "Proximity"},
+          "width": {"value": 20},
+          "height": {"value": 20},
+          "fill": {"value": "orange"},
+          "tooltip": {"signal": "datum.indicator_description"},
+          "scaleX": {"signal": "(datum.indicator_type === 'Hard') ? 1.3 : (datum.indicator_type === 'Medium') ? 1.15 : 1"},
+          "scaleY": {"signal": "(datum.indicator_type === 'Hard') ? 1.3 : (datum.indicator_type === 'Medium') ? 1.15 : 1"}
+        }
+      }
+    },
+    {
+      "type": "path",
+      "from": {"data": "indicator_table_info_acq"},
+      "encode": {
+        "enter": {
+          "path": {"signal": "(datum.indicator_isIncrease)? path_arrow_up : path_arrow_down"},
+          "x": {"scale": "xscale_action", "field": "x"},
+          "y": {"scale": "info_acq_scale", "field": "Information Acquisition"},
+          "width": {"value": 20},
+          "height": {"value": 20},
+          "fill": {"value": "orange"},
+          "tooltip": {"signal": "datum.indicator_description"},
+          "scaleX": {"signal": "(datum.indicator_type === 'Hard') ? 1.3 : (datum.indicator_type === 'Medium') ? 1.15 : 1"},
+          "scaleY": {"signal": "(datum.indicator_type === 'Hard') ? 1.3 : (datum.indicator_type === 'Medium') ? 1.15 : 1"}
+        }
+      }
+    },
+    {
+      "type": "path",
+      "from": {"data": "indicator_table_info_analysis"},
+      "encode": {
+        "enter": {
+          "path": {"signal": "(datum.indicator_isIncrease)? path_arrow_up : path_arrow_down"},
+          "x": {"scale": "xscale_action", "field": "x"},
+          "y": {"scale": "info_analysis_scale", "field": "Information Analysis"},
+          "width": {"value": 20},
+          "height": {"value": 20},
+          "fill": {"value": "orange"},
+          "tooltip": {"signal": "datum.indicator_description"},
+          "scaleX": {"signal": "(datum.indicator_type === 'Hard') ? 1.3 : (datum.indicator_type === 'Medium') ? 1.15 : 1"},
+          "scaleY": {"signal": "(datum.indicator_type === 'Hard') ? 1.3 : (datum.indicator_type === 'Medium') ? 1.15 : 1"}
+        }
+      }
+    },
+    {
+      "type": "path",
+      "from": {"data": "indicator_table_action_selection"},
+      "encode": {
+        "enter": {
+          "path": {"signal": "(datum.indicator_isIncrease)? path_arrow_up : path_arrow_down"},
+          "x": {"scale": "xscale_action", "field": "x"},
+          "y": {"scale": "action_selection_scale", "field": "Action Selection"},
+          "width": {"value": 20},
+          "height": {"value": 20},
+          "fill": {"value": "orange"},
+          "tooltip": {"signal": "datum.indicator_description"},
+          "scaleX": {"signal": "(datum.indicator_type === 'Hard') ? 1.3 : (datum.indicator_type === 'Medium') ? 1.15 : 1"},
+          "scaleY": {"signal": "(datum.indicator_type === 'Hard') ? 1.3 : (datum.indicator_type === 'Medium') ? 1.15 : 1"}
+        }
+      }
+    },
+    {
+      "type": "path",
+      "from": {"data": "indicator_table_action_impl"},
+      "encode": {
+        "enter": {
+          "path": {"signal": "(datum.indicator_isIncrease)? path_arrow_up : path_arrow_down"},
+          "x": {"scale": "xscale_action", "field": "x"},
+          "y": {"scale": "action_impl_scale", "field": "Action Implementation"},
+          "width": {"value": 20},
+          "height": {"value": 20},
+          "fill": {"value": "orange"},
+          "tooltip": {"signal": "datum.indicator_description"},
+          "scaleX": {"signal": "(datum.indicator_type === 'Hard') ? 1.3 : (datum.indicator_type === 'Medium') ? 1.15 : 1"},
+          "scaleY": {"signal": "(datum.indicator_type === 'Hard') ? 1.3 : (datum.indicator_type === 'Medium') ? 1.15 : 1"}
+        }
+      }
+    }
+  ],
+  "config": {}
+}

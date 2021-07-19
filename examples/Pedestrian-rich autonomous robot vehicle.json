@@ -1,0 +1,79 @@
+{
+    "name": "Pedestrian-rich autonomous robot vehicle",
+    "objective": "A socially aware autonomous robotic vehicle that can navigate safely and efficiently in pedestrian-rich environments. Navigation using deep reinforcement learning. https://news.mit.edu/2017/new-robot-rolls-rules-pedestrian-conduct-0830 ",
+    "robotType": "Robotic arm",
+    "teamComposition": "Humans = Robots",
+    "sharedInteraction": "Direct shared interaction",
+    "data": [
+        {
+            "Activity": "Navigate towards goal",
+            "Action": "Robot moves toward target position",
+            "Proximity": "Avoidance",
+            "Human Role": "Bystander",
+            "Criticality": "Chance at injury",
+            "Information Acquisition": "High",
+            "Information Analysis": "High",
+            "Action Implementation": "High",
+            "Action Selection": "High",
+            "id": 0,
+            "timeMin": 1,
+            "timeMax": 30
+        },
+        {
+            "Activity": "Navigate towards goal",
+            "Action": "Robot moves away from incoming pedestrian",
+            "Proximity": "Passing",
+            "Human Role": "Bystander",
+            "Criticality": "Chance at injury",
+            "Information Acquisition": "High",
+            "Information Analysis": "High",
+            "Action Implementation": "High",
+            "Action Selection": "High",
+            "id": 1,
+            "timeMin": 1,
+            "timeMax": 2
+        },
+        {
+            "Activity": "Navigate towards goal",
+            "Action": "Robot waits for pedestrian to move out of the way",
+            "Proximity": "Passing",
+            "Human Role": "Bystander",
+            "Criticality": "Chance at injury",
+            "Information Acquisition": "High",
+            "Information Analysis": "High",
+            "Action Implementation": "High",
+            "Action Selection": "High",
+            "id": 2,
+            "timeMin": 1,
+            "timeMax": 10
+        },
+        {
+            "Activity": "Navigate towards goal",
+            "Action": "Robot passes a pedestrian",
+            "Proximity": "Passing",
+            "Human Role": "Bystander",
+            "Criticality": "Chance at injury",
+            "Information Acquisition": "High",
+            "Information Analysis": "High",
+            "Action Implementation": "High",
+            "Action Selection": "High",
+            "id": 3,
+            "timeMin": 1,
+            "timeMax": 2
+        },
+        {
+            "Activity": "Navigate towards goal",
+            "Action": "Human waiting for robot to pass",
+            "Proximity": "Avoidance",
+            "Human Role": "Bystander",
+            "Criticality": "Chance at injury",
+            "Information Acquisition": "High",
+            "Information Analysis": "High",
+            "Action Implementation": "High",
+            "Action Selection": "High",
+            "id": 4,
+            "timeMin": 1,
+            "timeMax": 2
+        }
+    ]
+}
