@@ -1,0 +1,18 @@
+Activity;Action;Proximity;Human Role;Information Acquisition;Information Analysis;Action Selection;Action Implementation;Criticality;
+Starting the stick loading procedure;Worker is instructed to move to a robot indicated by a green light;Avoidance;Bystander;Low;Low;Low;Low;Loss of comfort;
+Starting the stick loading procedure;Worker arrives at robot station (based on positional beacon);Passing;Bystander;Medium;Medium;Low;Low;Loss of comfort;
+Starting the stick loading procedure;Robot arm moves it end effector to the correct position (when user arrives);Approaching;Collaborator;Low;Low;Low;Medium;Loss of comfort;
+Starting the stick loading procedure;Worker receives instructions on how to open the mounting mechanism;Approaching;Collaborator;Low;Low;Low;Low;Loss of comfort;
+Starting the stick loading procedure;Worker opens mounting mechanism off the robot;Touching;Collaborator;Low;Low;Low;Low;Chance at injury;
+Insert the first stick into the mounting mechanism;Worker receives instructions on how to load the first stick into the mouting mechanism;Approaching;Bystander;Low;Low;Low;Low;Loss of comfort;
+Insert the first stick into the mounting mechanism;Worker inserts the first stick (guided by the led lights);Touching;Collaborator;Low;Low;Low;Low;Chance at injury;
+Insert the first stick into the mounting mechanism;Worker secures the stick on the mounting mechanism;Touching;Collaborator;Low;Low;Low;Low;Loss of life;
+Insert the first stick into the mounting mechanism;Worker confirms that the stick is in position;Approaching;Collaborator;Low;Low;Low;Low;Loss of discretionary money;
+Insert the first stick into the mounting mechanism;Worker is instructed to move to a position behind the line (safety zone robot);Avoidance;Bystander;Low;Low;Low;Low;Loss of comfort;
+Insert the first stick into the mounting mechanism;Worker confirms that is behind the line.;Avoidance;Bystander;Low;Low;Low;Low;Chance at injury;
+Insert the first stick into the mounting mechanism;Worker receives instructions on how to load the first stick into the mouting mechanism;Approaching;Collaborator;Low;Low;Low;Low;Loss of comfort;
+Insert the first stick into the mounting mechanism;Worker inserts the first stick (guided by the led lights);Touching;Collaborator;Low;Low;Low;Low;Loss of discretionary money;
+Insert the first stick into the mounting mechanism;Worker secures the stick on the mounting mechanism;Touching;Collaborator;Low;Low;Low;Low;Chance at injury;
+Insert the first stick into the mounting mechanism;Worker confirms that the stick is in position;Approaching;Collaborator;Low;Low;Low;Low;Loss of discretionary money;
+Insert the first stick into the mounting mechanism;Worker is instructed to move to a position behind the line (safety zone robot);Avoidance;Bystander;Low;Low;Low;Low;Loss of comfort;
+Insert the first stick into the mounting mechanism;Worker confirms that is behind the line.;Avoidance;Bystander;Low;Low;Low;Low;Chance at injury;

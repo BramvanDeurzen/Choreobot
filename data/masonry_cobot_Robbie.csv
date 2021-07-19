@@ -1,0 +1,13 @@
+Activity;Action;Proximity;Human Role;Information Acquisition;Information Analysis;Action Selection;Action Implementation;Criticality;
+Pick up and carry the first brick to the correct position in the wall;Worker moves with the controller to the bricks;Following;Operator;Low;Low;Low;Low;Loss of essential money;
+Pick up and carry the first brick to the correct position in the wall;Worker inserts the clamps in to the bricks using the controller and closes them;Following;Operator;Low;Low;Low;Low;Loss of essential money;
+Pick up and carry the first brick to the correct position in the wall;Worker moves the bricks by physically moving with the controller to the desired position;Following;Operator;Low;Low;Low;Low;Chance at injury;
+Pick up and carry the first brick to the correct position in the wall;Worker lowers the bricks in to position and releases the clamp to place the bricks;Following;Operator;Low;Low;Low;Low;Loss of essential money;
+Pick up and carry the second brick to the correct position in the wall;Worker moves with the controller to the bricks;Following;Operator;Low;Low;Low;Low;Loss of essential money;
+Pick up and carry the second brick to the correct position in the wall;Worker inserts the clamps in to the bricks using the controller and closes them;Following;Operator;Low;Low;Low;Low;Loss of essential money;
+Pick up and carry the second brick to the correct position in the wall;Worker moves the bricks by physically moving with the controller to the desired position;Following;Operator;Low;Low;Low;Low;Chance at injury;
+Pick up and carry the second brick to the correct position in the wall;Worker lowers the bricks in to position and releases the clamp to place the bricks;Following;Operator;Low;Low;Low;Low;Loss of essential money;
+Pick up and carry the third brick to the correct position in the wall;Worker moves with the controller to the bricks;Following;Operator;Low;Low;Low;Low;Loss of essential money;
+Pick up and carry the third brick to the correct position in the wall;Worker inserts the clamps in to the bricks using the controller and closes them;Following;Operator;Low;Low;Low;Low;Loss of essential money;
+Pick up and carry the third brick to the correct position in the wall;Worker moves the bricks by physically moving with the controller to the desired position;Following;Operator;Low;Low;Low;Low;Chance at injury;
+Pick up and carry the third brick to the correct position in the wall;Worker lowers the bricks in to position and releases the clamp to place the bricks;Following;Operator;Low;Low;Low;Low;Loss of essential money;

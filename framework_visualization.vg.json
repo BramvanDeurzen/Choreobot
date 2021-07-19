@@ -52,7 +52,7 @@
         "Bystander"
       ]
     },
-    {"name": "autonomy_categories", "value": ["High", "Medium", "Low"]},
+    {"name": "autonomy_categories", "value": ["Full", "Semi", "None"]},
     {
       "name": "graph_height",
       "update": "(height - 6 * graph_padding) / (amount_proximity_criticality * 2 + amount_human_role + 4 * amount_autonomy)"
@@ -382,7 +382,7 @@
     {
       "orient": "left",
       "scale": "action_impl_scale",
-      "title": "Action Implementation",
+      "title": "Action Execution",
       "grid": true,
       "domain": false,
       "titleAngle": 0,

@@ -1,2 +1,2 @@
 x;Objective;Activity;Action;Proximity;Human Role;Information Acquisition;Information Analysis;Action Selection;Action Implementation;Criticality;Criticality_Change;Proximity_Change;Human Role_Change;Information Acquisition_Change;Information Analysis_Change;Action Selection_Change;Action Implementation_Change
-0;Objective description;Describe the activity;Describe the action;Avoidance;Bystander;None;None;None;None;Loss of comfort;i;i;i;i;i;i;i
+0;Objective description;Describe the activity;Describe the action;Following;Collaborator;Full;Full;Full;Full;Loss of life;i;i;i;i;i;i;i

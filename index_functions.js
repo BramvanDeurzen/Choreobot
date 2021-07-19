@@ -265,19 +265,19 @@ function CheckInputDataFieldValues(data) {
             alert("Invalid input value: '" + data[i]["Criticality"] + "' for field: Criticality on row: " + i + ". Data parsing stopped.");
             return false;
         }
-        else if (!data[i]["Information Acquisition"].match(/^(High|Medium|Low)$/)) {
+        else if (!data[i]["Information Acquisition"].match(/^(Full|Semi|None)$/)) {
             alert("Invalid input value: '" + data[i]["Information Acquisition"] + "' for field: Information Acquisition on row: " + i + ". Data parsing stopped.");
             return false;
         }
-        else if (!data[i]["Information Analysis"].match(/^(High|Medium|Low)$/)) {
+        else if (!data[i]["Information Analysis"].match(/^(Full|Semi|None)$/)) {
             alert("Invalid input value: '" + data[i]["Information Analysis"] + "' for field: Information Analysis on row: " + i + ". Data parsing stopped.");
             return false;
         }
-        else if (!data[i]["Action Selection"].match(/^(High|Medium|Low)$/)) {
+        else if (!data[i]["Action Selection"].match(/^(Full|Semi|None)$/)) {
             alert("Invalid input value: '" + data[i]["Action Selection"] + "' for field: Action Selection on row: " + i + ". Data parsing stopped.");
             return false;
         }
-        else if (!data[i]["Action Implementation"].match(/^(High|Medium|Low)$/)) {
+        else if (!data[i]["Action Implementation"].match(/^(Full|Semi|None)$/)) {
             alert("Invalid input value: '" + data[i]["Action Implementation"] + "' for field: Action Implementation on row: " + i + ". Data parsing stopped.");
             return false;
         }
@@ -494,11 +494,11 @@ function TranslateHumanRoleToNumberValue(input) {
 }
 
 function TranslateAutonomyToNumberValue(input) {
-    if (input === "High")
+    if (input === "Full")
         return 2;
-    else if (input === "Medium")
+    else if (input === "Semi")
         return 1;
-    else if (input === "Low")
+    else if (input === "None")
         return 0;
     else
         return -1;
@@ -586,10 +586,10 @@ $(document).ready(function () {
             "Proximity": "Following",
             "Human Role": "Collaborator",
             "Criticality": "Loss of life",
-            "Information Acquisition": "High",
-            "Information Analysis": "High",
-            "Action Implementation": "High",
-            "Action Selection": "High",
+            "Information Acquisition": "Full",
+            "Information Analysis": "Full",
+            "Action Implementation": "Full",
+            "Action Selection": "Full",
             "timeMin": 0,
             "timeMax": 0
         }
@@ -625,10 +625,10 @@ $(document).ready(function () {
             { title: "Proximity", field: "Proximity", editor: "select", editorParams: { values: { "Following": "Following", "Touching": "Touching", "Approaching": "Approaching", "Passing": "Passing", "Avoidance": "Avoidance", "None": "None" } }, validator: "required", headerSort: false },
             { title: "Human Role", field: "Human Role", editor: "select", editorParams: { values: { "Collaborator": "Collaborator", "Cooperator": "Cooperator", "Operator": "Operator", "Supervisor": "Supervisor", "Bystander": "Bystander" } }, validator: "required", headerSort: false },
             { title: "Criticality", field: "Criticality", editor: "select", editorParams: { values: { "Loss of life": "Loss of life", "Chance at critical injury": "Chance at critical injury", "Chance at injury": "Chance at injury", "Loss of comfort": "Loss of comfort", "Loss of essential money": "Loss of essential money", "Loss of discretionary money": "Loss of discretionary money" } }, validator: "required", headerSort: false },
-            { title: "Information Acquisition", field: "Information Acquisition", editor: "select", editorParams: { values: { "High": "High", "Medium": "Medium", "Low": "Low" } }, validator: "required", headerSort: false },
-            { title: "Information Analysis", field: "Information Analysis", editor: "select", editorParams: { values: { "High": "High", "Medium": "Medium", "Low": "Low" } }, validator: "required", headerSort: false },
-            { title: "Action Implementation", field: "Action Implementation", editor: "select", editorParams: { values: { "High": "High", "Medium": "Medium", "Low": "Low" } }, validator: "required", headerSort: false },
-            { title: "Action Selection", field: "Action Selection", editor: "select", editorParams: { values: { "High": "High", "Medium": "Medium", "Low": "Low" } }, validator: "required", headerSort: false },
+            { title: "Information Acquisition", field: "Information Acquisition", editor: "select", editorParams: { values: { "Full": "Full", "Semi": "Semi", "None": "None" } }, validator: "required", headerSort: false },
+            { title: "Information Analysis", field: "Information Analysis", editor: "select", editorParams: { values: { "Full": "Full", "Semi": "Semi", "None": "None" } }, validator: "required", headerSort: false },
+            { title: "Action Implementation", field: "Action Implementation", editor: "select", editorParams: { values: { "Full": "Full", "Semi": "Semi", "None": "None" } }, validator: "required", headerSort: false },
+            { title: "Action Selection", field: "Action Selection", editor: "select", editorParams: { values: { "Full": "Full", "Semi": "Semi", "None": "None" } }, validator: "required", headerSort: false },
             { title: "Time min", field: "timeMin", editor: "input", validator: ["number"], headerSort: false, accessorData:numberConvert },
             { title: "Time max", field: "timeMax", editor: "input", validator: ["number"], headerSort: false, accessorData:numberConvert },
         ]
